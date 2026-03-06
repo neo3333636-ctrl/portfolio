@@ -38,10 +38,10 @@
             left: 50%;
             transform: translate(-50%, -50%);
             object-fit: cover;
-            filter: brightness(0.35) contrast(1.1); /* 調整亮度與對比度 */
+            filter: brightness(0.35) contrast(1.1);
         }
 
-        /* 疊加層：增加漸層感，讓內容更集中 */
+        /* 疊加層 */
         .video-overlay {
             position: fixed;
             top: 0;
@@ -133,7 +133,6 @@
 
     <!-- 背景影片層 -->
     <div class="video-bg-container">
-        <!-- 使用 Pexels 上的簡約暗色調抽象影片 -->
         <video autoplay muted loop playsinline poster="https://images.pexels.com/photos/3124111/pexels-photo-3124111.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1080&w=1920">
             <source src="https://player.vimeo.com/external/370331493.sd.mp4?s=33d5966549a944365768560144f8087961f67f08&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
             您的瀏覽器不支援影片背景。
@@ -170,38 +169,66 @@
             <div class="md:col-span-2 space-y-6">
                 <h2 class="text-2xl font-bold border-l-4 border-white pl-4">個人簡介 | Profile</h2>
                 <div class="glass-card p-8 rounded-3xl">
-                    <p class="text-gray-100 leading-relaxed text-lg">
+                    <p class="text-gray-100 leading-relaxed text-lg mb-6">
                         我是一名影像創作者，長期從事影片拍攝與剪輯。擅長短影音與品牌合作影片製作，熟悉從企劃、拍攝到後期剪輯的完整流程。
-                        我平常也關注健身相關內容，希望能將影像創作與運動、生活美學結合，創造具感染力的視覺內容。
+                        我希望能將影像創作與運動、生活美學結合，創造具感染力的視覺內容。
                     </p>
+                    <!-- 影像風格 -->
+                    <div class="border-t border-white/10 pt-4">
+                        <h3 class="text-xs uppercase text-gray-400 tracking-widest mb-2 italic font-bold">Content Style</h3>
+                        <p class="text-sm text-gray-300 flex flex-wrap gap-x-4">
+                            <span>Short-form storytelling</span>
+                            <span>Lifestyle & documentary style</span>
+                            <span>Social media video production</span>
+                        </p>
+                    </div>
                 </div>
+
                 <div class="pt-2">
-                    <h3 class="text-xs uppercase text-gray-500 tracking-widest mb-4">熟悉工具與領域</h3>
-                    <div class="flex flex-wrap">
-                        <span class="tag">DaVinci Resolve</span>
-                        <span class="tag">CapCut</span>
-                        <span class="tag">動態攝影</span>
-                        <span class="tag">燈光佈置</span>
-                        <span class="tag">企劃腳本</span>
+                    <h3 class="text-xs uppercase text-gray-500 tracking-widest mb-6">熟悉工具與技能 | Skills</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                        <div class="space-y-3">
+                            <h4 class="text-white font-bold text-sm border-b border-white/20 pb-1 italic">Editing</h4>
+                            <div class="flex flex-wrap">
+                                <span class="tag">DaVinci Resolve</span>
+                                <span class="tag">CapCut</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <h4 class="text-white font-bold text-sm border-b border-white/20 pb-1 italic">Production</h4>
+                            <div class="flex flex-wrap">
+                                <span class="tag">動態攝影</span>
+                                <span class="tag">燈光架設</span>
+                            </div>
+                        </div>
+                        <div class="space-y-3">
+                            <h4 class="text-white font-bold text-sm border-b border-white/20 pb-1 italic">Content</h4>
+                            <div class="flex flex-wrap">
+                                <span class="tag">企劃腳本</span>
+                                <span class="tag">短影音製作</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <!-- 影像經驗區塊 -->
             <div class="glass-card p-8 rounded-3xl">
-                <h2 class="text-xl font-bold mb-6">影像經驗</h2>
-                <ul class="space-y-6 text-sm text-gray-300">
-                    <li class="relative pl-4 border-l border-gray-700">
+                <h2 class="text-xl font-bold mb-6 italic">影像經驗 | Experience</h2>
+                <ul class="space-y-8 text-sm text-gray-300">
+                    <li class="relative pl-4 border-l-2 border-white/30">
                         <div class="text-white font-bold text-base">媒體公司</div>
-                        <div class="mt-1">直播、口播錄影、燈光、動態攝影</div>
+                        <div class="mt-2 leading-relaxed">直播拍攝、口播錄影、燈光架設、動態攝影</div>
                     </li>
-                    <li class="relative pl-4 border-l border-gray-700">
-                        <div class="text-white font-bold text-base">傢俱公司</div>
-                        <div class="mt-1">產品影片企劃、人物訪談、平面攝影</div>
+                    <li class="relative pl-4 border-l-2 border-white/30">
+                        <div class="text-white font-bold text-base">傢俱品牌內容製作</div>
+                        <div class="mt-2 leading-relaxed">產品影片企劃、人物訪談拍攝、品牌平面攝影</div>
                     </li>
                 </ul>
             </div>
         </section>
 
-        <!-- Portfolio Section (Video) -->
+        <!-- Portfolio Section -->
         <section id="portfolio">
             <h2 class="text-2xl font-bold border-l-4 border-white pl-4 mb-10">精選影像作品 | Video Works</h2>
             
@@ -212,7 +239,8 @@
                         <i class="fab fa-youtube"></i>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold mb-1 group-hover:text-red-400 transition-colors">澳洲打工度假經驗分享｜Australia Working Holiday Insights</h3>
+                        <h3 class="text-lg font-bold mb-1 group-hover:text-red-400 transition-colors">澳洲打工度假經驗分享</h3>
+                        <p class="text-white/80 text-xs mb-2 tracking-widest uppercase italic border-b border-white/10 pb-2">Australia Working Holiday Story & Tips</p>
                         <p class="text-gray-400 text-sm">腳本 / 企劃 / 拍攝 / 剪輯</p>
                     </div>
                 </a>
@@ -222,7 +250,8 @@
                         <i class="fab fa-youtube"></i>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold mb-1 group-hover:text-red-400 transition-colors">品牌人物訪談影片｜Brand Interview Video</h3>
+                        <h3 class="text-lg font-bold mb-1 group-hover:text-red-400 transition-colors">品牌人物訪談影片</h3>
+                        <p class="text-white/80 text-xs mb-2 tracking-widest uppercase italic border-b border-white/10 pb-2">Brand Interview & Portrait Video</p>
                         <p class="text-gray-400 text-sm">腳本 / 企劃 / 拍攝 / 訪談 / 剪輯</p>
                     </div>
                 </a>
@@ -232,7 +261,8 @@
                         <i class="fab fa-youtube"></i>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold mb-1 group-hover:text-red-400 transition-colors">知識分享影片｜Knowledge Sharing Video</h3>
+                        <h3 class="text-lg font-bold mb-1 group-hover:text-red-400 transition-colors">知識分享影片系列</h3>
+                        <p class="text-white/80 text-xs mb-2 tracking-widest uppercase italic border-b border-white/10 pb-2">Educational Content Series</p>
                         <p class="text-gray-400 text-sm">燈光 / 腳本 / 企劃 / 拍攝 / 剪輯</p>
                     </div>
                 </a>
@@ -242,8 +272,9 @@
                         <i class="fab fa-instagram"></i>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold mb-1 group-hover:text-pink-400 transition-colors">社群短影音創作｜Social Media Short-form Video</h3>
-                        <p class="text-gray-400 text-sm">IG Reels / 故事敘述</p>
+                        <h3 class="text-lg font-bold mb-1 group-hover:text-pink-400 transition-colors">社群短影音創作</h3>
+                        <p class="text-white/80 text-xs mb-2 tracking-widest uppercase italic border-b border-white/10 pb-2">Social Media Shorts: Creative Reels</p>
+                        <p class="text-gray-400 text-sm">IG Reels / Storytelling</p>
                     </div>
                 </a>
                 <!-- Work 5 -->
@@ -252,7 +283,8 @@
                         <i class="fab fa-youtube"></i>
                     </div>
                     <div class="p-6">
-                        <h3 class="text-lg font-bold mb-1 group-hover:text-red-400 transition-colors">產品開箱影片｜Product Unboxing Video</h3>
+                        <h3 class="text-lg font-bold mb-1 group-hover:text-red-400 transition-colors">產品開箱影片</h3>
+                        <p class="text-white/80 text-xs mb-2 tracking-widest uppercase italic border-b border-white/10 pb-2">Product Unboxing & Review Video</p>
                         <p class="text-gray-400 text-sm">產品開箱剪輯</p>
                     </div>
                 </a>
