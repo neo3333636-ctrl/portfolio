@@ -11,20 +11,56 @@
         
         body {
             font-family: 'Noto Sans TC', sans-serif;
-            background-color: #0f0f0f;
+            background-color: #000;
             color: #ffffff;
             scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* 影片背景容器 */
+        .video-bg-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+        }
+
+        .video-bg-container video {
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            filter: brightness(0.35) contrast(1.1); /* 調整亮度與對比度 */
+        }
+
+        /* 疊加層：增加漸層感，讓內容更集中 */
+        .video-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.85) 100%);
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
 
         .glass-card:hover {
-            background: rgba(255, 255, 255, 0.07);
+            background: rgba(255, 255, 255, 0.08);
             transform: translateY(-5px);
             border-color: rgba(255, 255, 255, 0.3);
         }
@@ -33,10 +69,11 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            border: 3px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.3);
             overflow: hidden;
             flex-shrink: 0;
             background: #222;
+            box-shadow: 0 0 30px rgba(0,0,0,0.8);
         }
 
         .avatar-container img {
@@ -47,7 +84,7 @@
 
         .video-placeholder {
             aspect-ratio: 16 / 9;
-            background: #1a1a1a;
+            background: rgba(0,0,0,0.5);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -59,6 +96,7 @@
             font-size: 3rem;
             opacity: 0.5;
             transition: all 0.3s ease;
+            color: white;
         }
 
         .glass-card:hover .video-placeholder i {
@@ -67,13 +105,15 @@
         }
 
         .tag {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 4px 12px;
+            background: rgba(255, 255, 255, 0.12);
+            padding: 4px 14px;
             border-radius: 20px;
             font-size: 0.75rem;
             margin-right: 8px;
             margin-bottom: 8px;
             display: inline-block;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         /* 自定義滾動條 */
@@ -81,7 +121,7 @@
             width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #0f0f0f;
+            background: #000;
         }
         ::-webkit-scrollbar-thumb {
             background: #333;
@@ -91,18 +131,27 @@
 </head>
 <body class="p-4 md:p-8">
 
+    <!-- 背景影片層 -->
+    <div class="video-bg-container">
+        <!-- 使用 Pexels 上的簡約暗色調抽象影片 -->
+        <video autoplay muted loop playsinline poster="https://images.pexels.com/photos/3124111/pexels-photo-3124111.jpeg?auto=compress&cs=tinysrgb&fit=crop&h=1080&w=1920">
+            <source src="https://player.vimeo.com/external/370331493.sd.mp4?s=33d5966549a944365768560144f8087961f67f08&profile_id=164&oauth2_token_id=57447761" type="video/mp4">
+            您的瀏覽器不支援影片背景。
+        </video>
+    </div>
+    <div class="video-overlay"></div>
+
     <!-- Header Section -->
-    <header class="max-w-5xl mx-auto mt-10 mb-16">
+    <header class="max-w-5xl mx-auto mt-10 mb-20 relative">
         <div class="flex flex-col md:flex-row items-center md:items-start justify-between gap-8">
-            <div class="flex flex-col md:flex-row items-center gap-6">
+            <div class="flex flex-col md:flex-row items-center gap-8">
                 <!-- 大頭貼區塊 -->
                 <div class="avatar-container">
-                    <!-- 請將此處的 src 改為你的照片檔名，例如 profile.jpg -->
                     <img src="profile.jpg" alt="楊頌群" onerror="this.src='https://via.placeholder.com/150?text=Neo'">
                 </div>
                 <div class="text-center md:text-left">
-                    <h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-2 uppercase italic">Neo Yang</h1>
-                    <p class="text-xl text-gray-400 tracking-widest uppercase">楊頌群 / Video Creator</p>
+                    <h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-2 uppercase italic drop-shadow-2xl">Neo Yang</h1>
+                    <p class="text-xl text-gray-300 tracking-widest uppercase drop-shadow-md">楊頌群 / Video Creator</p>
                 </div>
             </div>
             <div class="flex flex-wrap justify-center gap-4">
@@ -114,18 +163,20 @@
         </div>
     </header>
 
-    <main class="max-w-5xl mx-auto space-y-20">
+    <main class="max-w-5xl mx-auto space-y-24 relative">
         
         <!-- About Section -->
-        <section id="about" class="grid md:grid-cols-3 gap-8 items-start">
-            <div class="md:col-span-2 space-y-4">
-                <h2 class="text-2xl font-bold border-l-4 border-white pl-4 mb-6">個人簡介 | Profile</h2>
-                <p class="text-gray-300 leading-relaxed text-lg">
-                    我是一名影像創作者，長期從事影片拍攝與剪輯。擅長短影音與品牌合作影片製作，熟悉從企劃、拍攝到後期剪輯的完整流程。
-                    我平常也關注健身相關內容，希望能將影像創作與運動、生活美學結合，創造具感染力的視覺內容。
-                </p>
-                <div class="pt-4">
-                    <h3 class="text-sm uppercase text-gray-500 mb-3">熟悉工具與領域</h3>
+        <section id="about" class="grid md:grid-cols-3 gap-10 items-start">
+            <div class="md:col-span-2 space-y-6">
+                <h2 class="text-2xl font-bold border-l-4 border-white pl-4">個人簡介 | Profile</h2>
+                <div class="glass-card p-8 rounded-3xl">
+                    <p class="text-gray-100 leading-relaxed text-lg">
+                        我是一名影像創作者，長期從事影片拍攝與剪輯。擅長短影音與品牌合作影片製作，熟悉從企劃、拍攝到後期剪輯的完整流程。
+                        我平常也關注健身相關內容，希望能將影像創作與運動、生活美學結合，創造具感染力的視覺內容。
+                    </p>
+                </div>
+                <div class="pt-2">
+                    <h3 class="text-xs uppercase text-gray-500 tracking-widest mb-4">熟悉工具與領域</h3>
                     <div class="flex flex-wrap">
                         <span class="tag">DaVinci Resolve</span>
                         <span class="tag">CapCut</span>
@@ -135,16 +186,16 @@
                     </div>
                 </div>
             </div>
-            <div class="glass-card p-6 rounded-2xl">
-                <h2 class="text-xl font-bold mb-4">影像經驗</h2>
-                <ul class="space-y-4 text-sm text-gray-400">
-                    <li>
-                        <div class="text-white font-bold">媒體公司</div>
-                        <div>直播、口播錄影、燈光、動態攝影</div>
+            <div class="glass-card p-8 rounded-3xl">
+                <h2 class="text-xl font-bold mb-6">影像經驗</h2>
+                <ul class="space-y-6 text-sm text-gray-300">
+                    <li class="relative pl-4 border-l border-gray-700">
+                        <div class="text-white font-bold text-base">媒體公司</div>
+                        <div class="mt-1">直播、口播錄影、燈光、動態攝影</div>
                     </li>
-                    <li>
-                        <div class="text-white font-bold">傢俱公司</div>
-                        <div>產品影片企劃、人物訪談、平面攝影</div>
+                    <li class="relative pl-4 border-l border-gray-700">
+                        <div class="text-white font-bold text-base">傢俱公司</div>
+                        <div class="mt-1">產品影片企劃、人物訪談、平面攝影</div>
                     </li>
                 </ul>
             </div>
@@ -152,13 +203,13 @@
 
         <!-- Portfolio Section (Video) -->
         <section id="portfolio">
-            <h2 class="text-2xl font-bold border-l-4 border-white pl-4 mb-8">精選影像作品 | Video Works</h2>
+            <h2 class="text-2xl font-bold border-l-4 border-white pl-4 mb-10">精選影像作品 | Video Works</h2>
             
-            <div class="grid md:grid-cols-2 gap-6">
+            <div class="grid md:grid-cols-2 gap-8">
                 <!-- Work 1 -->
-                <a href="https://youtu.be/qow1JovfMio" target="_blank" class="glass-card rounded-2xl overflow-hidden block group">
+                <a href="https://youtu.be/qow1JovfMio" target="_blank" class="glass-card rounded-3xl overflow-hidden block group">
                     <div class="video-placeholder">
-                        <i class="fab fa-youtube text-red-600"></i>
+                        <i class="fab fa-youtube"></i>
                     </div>
                     <div class="p-6">
                         <h3 class="text-lg font-bold mb-1 group-hover:text-red-400 transition-colors">澳洲打工度假經驗分享｜Australia Working Holiday Insights</h3>
@@ -166,9 +217,9 @@
                     </div>
                 </a>
                 <!-- Work 2 -->
-                <a href="https://youtu.be/CCPLR4_uTOA" target="_blank" class="glass-card rounded-2xl overflow-hidden block group">
+                <a href="https://youtu.be/CCPLR4_uTOA" target="_blank" class="glass-card rounded-3xl overflow-hidden block group">
                     <div class="video-placeholder">
-                        <i class="fab fa-youtube text-red-600"></i>
+                        <i class="fab fa-youtube"></i>
                     </div>
                     <div class="p-6">
                         <h3 class="text-lg font-bold mb-1 group-hover:text-red-400 transition-colors">品牌人物訪談影片｜Brand Interview Video</h3>
@@ -176,9 +227,9 @@
                     </div>
                 </a>
                 <!-- Work 3 -->
-                <a href="https://youtu.be/hFKsCF9reZ4" target="_blank" class="glass-card rounded-2xl overflow-hidden block group">
+                <a href="https://youtu.be/hFKsCF9reZ4" target="_blank" class="glass-card rounded-3xl overflow-hidden block group">
                     <div class="video-placeholder">
-                        <i class="fab fa-youtube text-red-600"></i>
+                        <i class="fab fa-youtube"></i>
                     </div>
                     <div class="p-6">
                         <h3 class="text-lg font-bold mb-1 group-hover:text-red-400 transition-colors">知識分享影片｜Knowledge Sharing Video</h3>
@@ -186,9 +237,9 @@
                     </div>
                 </a>
                 <!-- Work 4 -->
-                <a href="https://www.instagram.com/reel/DTQH9bOEfLz/" target="_blank" class="glass-card rounded-2xl overflow-hidden block group">
+                <a href="https://www.instagram.com/reel/DTQH9bOEfLz/" target="_blank" class="glass-card rounded-3xl overflow-hidden block group">
                     <div class="video-placeholder">
-                        <i class="fab fa-instagram text-pink-500"></i>
+                        <i class="fab fa-instagram"></i>
                     </div>
                     <div class="p-6">
                         <h3 class="text-lg font-bold mb-1 group-hover:text-pink-400 transition-colors">社群短影音創作｜Social Media Short-form Video</h3>
@@ -196,9 +247,9 @@
                     </div>
                 </a>
                 <!-- Work 5 -->
-                <a href="https://youtu.be/KeV-Fg7vgQw" target="_blank" class="glass-card rounded-2xl overflow-hidden block group">
+                <a href="https://youtu.be/KeV-Fg7vgQw" target="_blank" class="glass-card rounded-3xl overflow-hidden block group">
                     <div class="video-placeholder">
-                        <i class="fab fa-youtube text-red-600"></i>
+                        <i class="fab fa-youtube"></i>
                     </div>
                     <div class="p-6">
                         <h3 class="text-lg font-bold mb-1 group-hover:text-red-400 transition-colors">產品開箱影片｜Product Unboxing Video</h3>
@@ -209,20 +260,20 @@
         </section>
 
         <!-- Footer Section -->
-        <footer class="text-center py-20 border-t border-gray-800">
+        <footer class="text-center py-24 border-t border-gray-900 relative">
             <h2 class="text-4xl font-bold mb-8 tracking-tight italic">LET'S CREATE TOGETHER</h2>
             <div class="flex flex-col md:flex-row justify-center items-center gap-6 md:gap-12">
-                <a href="mailto:i60402@kimo.com" class="text-gray-400 hover:text-white transition-colors flex items-center gap-3 text-lg">
+                <a href="mailto:i60402@kimo.com" class="text-gray-300 hover:text-white transition-colors flex items-center gap-3 text-lg">
                     <i class="fas fa-envelope text-blue-400"></i> i60402@kimo.com
                 </a>
                 <span class="hidden md:inline text-gray-800">|</span>
-                <a href="tel:0912490623" class="text-gray-400 hover:text-white transition-colors flex items-center gap-3 text-lg">
+                <a href="tel:0912490623" class="text-gray-300 hover:text-white transition-colors flex items-center gap-3 text-lg">
                     <i class="fas fa-phone text-green-400"></i> 0912-490-623
                 </a>
             </div>
-            <div class="mt-12 flex justify-center gap-6 text-sm">
-                <a href="https://www.instagram.com/333neo_hani?igsh=MXFreWtvZTRhczZqYQ%3D%3D&utm_source=qr" target="_blank" class="text-gray-600 hover:text-pink-400 transition-all uppercase tracking-widest">Instagram</a>
-                <a href="https://youtube.com/@newneo135?si=5KfMD9FJpdEwGLeO" target="_blank" class="text-gray-600 hover:text-red-500 transition-all uppercase tracking-widest">YouTube</a>
+            <div class="mt-16 flex justify-center gap-8 text-xs tracking-[0.2em]">
+                <a href="https://www.instagram.com/333neo_hani?igsh=MXFreWtvZTRhczZqYQ%3D%3D&utm_source=qr" target="_blank" class="text-gray-600 hover:text-pink-400 transition-all uppercase">Instagram</a>
+                <a href="https://youtube.com/@newneo135?si=5KfMD9FJpdEwGLeO" target="_blank" class="text-gray-600 hover:text-red-500 transition-all uppercase">YouTube</a>
             </div>
         </footer>
 
