@@ -82,26 +82,48 @@
             object-fit: cover;
         }
 
-        .video-placeholder {
+        /* 作品封面圖片樣式 */
+        .portfolio-thumbnail {
             aspect-ratio: 16 / 9;
             background: rgba(0,0,0,0.5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
             overflow: hidden;
             position: relative;
         }
 
-        .video-placeholder i {
-            font-size: 3rem;
-            opacity: 0.5;
-            transition: all 0.3s ease;
-            color: white;
+        .portfolio-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
         }
 
-        .glass-card:hover .video-placeholder i {
+        .glass-card:hover .portfolio-thumbnail img {
+            transform: scale(1.05);
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.2);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover .play-overlay {
             opacity: 1;
-            transform: scale(1.1);
+            background: rgba(0,0,0,0.1);
+        }
+
+        .play-overlay i {
+            font-size: 3rem;
+            color: white;
+            text-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
 
         .tag {
@@ -192,20 +214,26 @@
                             <div class="flex flex-wrap">
                                 <span class="tag">DaVinci Resolve</span>
                                 <span class="tag">CapCut</span>
+                                <span class="tag">調色（Color Correction）</span>
+                                <span class="tag">字幕與社群格式剪輯</span>
                             </div>
                         </div>
                         <div class="space-y-3">
                             <h4 class="text-white font-bold text-sm border-b border-white/20 pb-1 italic">Production</h4>
                             <div class="flex flex-wrap">
                                 <span class="tag">動態攝影</span>
-                                <span class="tag">燈光架設</span>
+                                <span class="tag">燈光佈置</span>
+                                <span class="tag">相機操作</span>
+                                <span class="tag">人物訪談拍攝</span>
                             </div>
                         </div>
                         <div class="space-y-3">
                             <h4 class="text-white font-bold text-sm border-b border-white/20 pb-1 italic">Content</h4>
                             <div class="flex flex-wrap">
-                                <span class="tag">企劃腳本</span>
-                                <span class="tag">短影音製作</span>
+                                <span class="tag">影片企劃發想</span>
+                                <span class="tag">腳本撰寫</span>
+                                <span class="tag">短影音內容製作</span>
+                                <span class="tag">故事敘事（Storytelling）</span>
                             </div>
                         </div>
                     </div>
@@ -233,10 +261,11 @@
             <h2 class="text-2xl font-bold border-l-4 border-white pl-4 mb-10">精選影像作品 | Video Works</h2>
             
             <div class="grid md:grid-cols-2 gap-8">
-                <!-- Work 1 -->
+                <!-- Work 1: 澳洲打工度假 -->
                 <a href="https://youtu.be/qow1JovfMio" target="_blank" class="glass-card rounded-3xl overflow-hidden block group">
-                    <div class="video-placeholder">
-                        <i class="fab fa-youtube"></i>
+                    <div class="portfolio-thumbnail">
+                        <img src="https://img.youtube.com/vi/qow1JovfMio/maxresdefault.jpg" alt="澳洲打工度假經驗分享" onerror="this.src='https://img.youtube.com/vi/qow1JovfMio/0.jpg'">
+                        <div class="play-overlay"><i class="fab fa-youtube"></i></div>
                     </div>
                     <div class="p-6">
                         <h3 class="text-lg font-bold mb-1 group-hover:text-red-400 transition-colors">澳洲打工度假經驗分享</h3>
@@ -244,10 +273,11 @@
                         <p class="text-gray-400 text-sm">腳本 / 企劃 / 拍攝 / 剪輯</p>
                     </div>
                 </a>
-                <!-- Work 2 -->
+                <!-- Work 2: 品牌人物訪談 -->
                 <a href="https://youtu.be/CCPLR4_uTOA" target="_blank" class="glass-card rounded-3xl overflow-hidden block group">
-                    <div class="video-placeholder">
-                        <i class="fab fa-youtube"></i>
+                    <div class="portfolio-thumbnail">
+                        <img src="https://img.youtube.com/vi/CCPLR4_uTOA/maxresdefault.jpg" alt="品牌人物訪談影片" onerror="this.src='https://img.youtube.com/vi/CCPLR4_uTOA/0.jpg'">
+                        <div class="play-overlay"><i class="fab fa-youtube"></i></div>
                     </div>
                     <div class="p-6">
                         <h3 class="text-lg font-bold mb-1 group-hover:text-red-400 transition-colors">品牌人物訪談影片</h3>
@@ -255,10 +285,11 @@
                         <p class="text-gray-400 text-sm">腳本 / 企劃 / 拍攝 / 訪談 / 剪輯</p>
                     </div>
                 </a>
-                <!-- Work 3 -->
+                <!-- Work 3: 知識分享影片 -->
                 <a href="https://youtu.be/hFKsCF9reZ4" target="_blank" class="glass-card rounded-3xl overflow-hidden block group">
-                    <div class="video-placeholder">
-                        <i class="fab fa-youtube"></i>
+                    <div class="portfolio-thumbnail">
+                        <img src="https://img.youtube.com/vi/hFKsCF9reZ4/maxresdefault.jpg" alt="知識分享影片系列" onerror="this.src='https://img.youtube.com/vi/hFKsCF9reZ4/0.jpg'">
+                        <div class="play-overlay"><i class="fab fa-youtube"></i></div>
                     </div>
                     <div class="p-6">
                         <h3 class="text-lg font-bold mb-1 group-hover:text-red-400 transition-colors">知識分享影片系列</h3>
@@ -266,10 +297,11 @@
                         <p class="text-gray-400 text-sm">燈光 / 腳本 / 企劃 / 拍攝 / 剪輯</p>
                     </div>
                 </a>
-                <!-- Work 4 -->
+                <!-- Work 4: 社群短影音 (Instagram 使用影片第一幀或靜態封面替代) -->
                 <a href="https://www.instagram.com/reel/DTQH9bOEfLz/" target="_blank" class="glass-card rounded-3xl overflow-hidden block group">
-                    <div class="video-placeholder">
-                        <i class="fab fa-instagram"></i>
+                    <div class="portfolio-thumbnail">
+                        <img src="https://images.pexels.com/photos/257904/pexels-photo-257904.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="社群短影音創作">
+                        <div class="play-overlay"><i class="fab fa-instagram"></i></div>
                     </div>
                     <div class="p-6">
                         <h3 class="text-lg font-bold mb-1 group-hover:text-pink-400 transition-colors">社群短影音創作</h3>
@@ -277,10 +309,11 @@
                         <p class="text-gray-400 text-sm">IG Reels / Storytelling</p>
                     </div>
                 </a>
-                <!-- Work 5 -->
+                <!-- Work 5: 產品開箱 -->
                 <a href="https://youtu.be/KeV-Fg7vgQw" target="_blank" class="glass-card rounded-3xl overflow-hidden block group">
-                    <div class="video-placeholder">
-                        <i class="fab fa-youtube"></i>
+                    <div class="portfolio-thumbnail">
+                        <img src="https://img.youtube.com/vi/KeV-Fg7vgQw/maxresdefault.jpg" alt="產品開箱影片" onerror="this.src='https://img.youtube.com/vi/KeV-Fg7vgQw/0.jpg'">
+                        <div class="play-overlay"><i class="fab fa-youtube"></i></div>
                     </div>
                     <div class="p-6">
                         <h3 class="text-lg font-bold mb-1 group-hover:text-red-400 transition-colors">產品開箱影片</h3>
